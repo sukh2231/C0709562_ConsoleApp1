@@ -7,6 +7,7 @@ using System.Collections;
 using System.IO;
 namespace C0709562
 {
+ 
     class Program
     {
         ArrayList Beowulf;
@@ -14,11 +15,13 @@ namespace C0709562
         {
             Program p = new Program();
             p.Beowulf = new ArrayList();
+            p.Run();
         }
         public void Run() { this.ReadTextFiles(); }
         public void ReadTextFiles()
         {
-            using (StreamReader file = new StreamReader("U:/Users/709562/11april/ConsoleApp1beowulf.txt"))
+            using (StreamReader file = new StreamReader("U:/Users/709562/Beowulf.txt"))
+            
             {
                 int counter = 0;
                 string ln;
@@ -26,12 +29,31 @@ namespace C0709562
 
                 {
                     Console.WriteLine(ln);
+                    counter++;
                     Beowulf.Add(ln);
                 }
                 file.Close();
                 Console.WriteLine($"File has {counter} lines.");
 
             }
+        }
+        public void ProcessArrayList()
+        {
+            foreach (var line in Beowulf)
+            {
+                if (ContainsWord(line.ToString().ToLower(), "sea") && ContainsWord(line.ToString().ToLower(), "fare"))
+                {
+                    Console.WriteLine("line number is: {0}, LineNumber");
+                }
+            }
+        }
+        public bool ContainsWord(string line, string word)
+        {
+            if (line.Contains(word) == true)
+            {
+                return true;
+            }
+            return false;
         }
         public int FindNumberOfBlankSapces(string line)
         {
